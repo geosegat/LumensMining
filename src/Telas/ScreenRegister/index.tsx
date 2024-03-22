@@ -4,7 +4,7 @@ import {NavigationProps} from '../../utilitis/types/index';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const onPress = () => {
-    navigation.navigate('ScreenLogin');
+    navigation.navigate('ScreenInitial');
   };
   return (
     <View>
