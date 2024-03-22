@@ -4,12 +4,18 @@ import ScreenLogin from './src/Telas/ScreenLogin';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import ScreenRegister from './src/Telas/ScreenRegister';
+import ScreenInitial from './src/Telas/ScreenInitial';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ScreenLogin">
+      <Stack.Navigator initialRouteName="ScreenInitial">
+        <Stack.Screen
+          name="ScreenInitial"
+          component={ScreenInitial}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="ScreenLogin"
           component={ScreenLogin}
