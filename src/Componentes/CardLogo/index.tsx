@@ -8,11 +8,9 @@ interface CardLogoProps {
 
 const CardLogo = ({label}: CardLogoProps) => {
   return (
-    <View>
-      <AppText color="#114aa0" variant="bold" size={'xxhuge'}>
-        {label}
-      </AppText>
-    </View>
+    <AppText color="#cfd2d4" variant="bold" size={'xxhuge'}>
+      {label}
+    </AppText>
   );
 };
 
