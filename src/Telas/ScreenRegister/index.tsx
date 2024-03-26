@@ -1,6 +1,6 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {NavigationProps} from '../../utilitis/types/index';
+import {NavigationProps} from '../../utilitis/types/navigation';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const onPress = () => {
