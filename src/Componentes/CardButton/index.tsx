@@ -5,12 +5,13 @@ import AppText from '../AppText';
 interface CardButtonProps {
   label: string;
   onPress: () => void;
+  style?: {};
 }
 
-const CardButton = ({label, onPress}: CardButtonProps) => {
+const CardButton = ({label, onPress, style}: CardButtonProps) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <AppText color="#fff" size="large" variant="bold">
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
+      <AppText color="#cfd2d4" size="large" variant="bold">
         {label ?? 'Next'}
       </AppText>
     </TouchableOpacity>
@@ -24,6 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#114aa0',
     padding: 10,
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 20,
   },
 });
