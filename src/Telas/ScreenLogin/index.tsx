@@ -1,5 +1,5 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInput';
 import CardButton from '../../Componentes/CardButton';
@@ -8,8 +8,22 @@ import CardLogo from '../../Componentes/CardLogo';
 import AppText from '../../Componentes/AppText';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
+  const [message, setMessage] = useState('');
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
+  const [colorr, setColorr] = useState('');
+
   const onPress = () => {
-    navigation.navigate('ScreenInitial');
+    if (user === '123' && pass === '123') {
+      setMessage('Senha ok');
+      setColorr('green');
+      setTimeout(() => {
+        navigation.navigate('ScreenAccount');
+      }, 1500);
+    } else {
+      setMessage('Senha errada');
+      setColorr('red');
+    }
   };
   return (
     <View style={styles.container}>
@@ -24,19 +38,21 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       </View>
 
       <CardInput
+        onChangeText={u => setUser(u)}
         style={{marginTop: 20}}
         label="Enter Username"
         svgType="user"
       />
       <CardInput
+        onChangeText={p => setPass(p)}
         style={{marginTop: 20}}
         label="Enter Password"
         svgType="pass"
         keyboardType={'numeric'}
         secureTextEntry={true}
       />
-      <AppText style={{marginTop: 10}} color="gray">
-        Senha errada
+      <AppText style={{marginTop: 10}} color={colorr}>
+        {message}
       </AppText>
       <CardButton style={{marginTop: 30}} label="Login" onPress={onPress} />
     </View>
