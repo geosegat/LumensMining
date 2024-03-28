@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import ScreenRegister from './src/Telas/ScreenRegister';
 import ScreenInitial from './src/Telas/ScreenInitial';
+import ScreenAccount from './src/Telas/ScreenAccount';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -25,6 +26,11 @@ const App = () => {
           name="ScreenRegister"
           component={ScreenRegister}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ScreenAccount"
+          component={ScreenAccount}
+          options={{headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>
