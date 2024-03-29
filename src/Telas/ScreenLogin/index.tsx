@@ -54,7 +54,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       <AppText style={{marginTop: 10}} color={colorr}>
         {message}
       </AppText>
-      <CardButton style={{marginTop: 30}} label="Login" onPress={onPress} />
+      <CardButton style={{marginTop: 20}} label="Login" onPress={onPress} />
     </View>
   );
 };
