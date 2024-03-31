@@ -28,7 +28,7 @@ const App = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="ScreenAccountt"
+          name="ScreenAccount"
           component={ScreenAccount}
           options={{headerShown: true}}
         />
