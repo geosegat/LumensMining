@@ -17,7 +17,7 @@ const Roulette = () => {
     rotation.setValue(0);
     Animated.timing(rotation, {
       toValue: spinValue,
-      duration: 3000, // Duration of rotation
+      duration: 3000, // Duration of
       easing: Easing.out(Easing.quad), // Easing function for smooth rotation
       useNativeDriver: true,
     }).start(() => {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   pointer: {
     backgroundColor: 'pink',
-    flex: 1,
+
     width: 0,
     height: 0,
     borderLeftWidth: 10,
