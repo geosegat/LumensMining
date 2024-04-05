@@ -16,7 +16,7 @@ const Roulette = () => {
     const spinValue = Math.floor(Math.random() * 360) + 720;
     Animated.timing(rotation, {
       toValue: spinValue,
-      duration: 3000, // Duration of
+      duration: 3000,
       easing: Easing.out(Easing.quad), // Easing function for smooth rotation
       useNativeDriver: true,
     }).start(() => {
