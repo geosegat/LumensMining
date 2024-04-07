@@ -26,7 +26,7 @@ const Roulette = () => {
   };
 
   const options = [
-    {label: 'blue', color: 'red'},
+    {label: 'Red', color: 'red'},
     {label: 'Green', color: 'green'},
     {label: 'Black', color: 'black'},
     {label: 'Red', color: 'red'},
