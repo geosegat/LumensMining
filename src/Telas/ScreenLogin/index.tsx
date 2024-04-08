@@ -11,18 +11,15 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
-  const [colorr, setColorr] = useState('');
 
   const onPress = () => {
     if (user === '123' && pass === '123') {
       setMessage('Senha ok');
-      setColorr('green');
       setTimeout(() => {
         navigation.navigate('ScreenAccount');
       }, 1500);
     } else {
       setMessage('Senha errada');
-      setColorr('red');
     }
   };
   return (
@@ -51,7 +48,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
         keyboardType={'numeric'}
         secureTextEntry={true}
       />
-      <AppText style={{marginTop: 10}} color={colorr}>
+      <AppText style={{marginTop: 10}} color={'gray'}>
         {message}
       </AppText>
       <CardButton style={{marginTop: 20}} label="Login" onPress={onPress} />
