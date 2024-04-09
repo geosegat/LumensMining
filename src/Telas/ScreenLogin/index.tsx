@@ -43,7 +43,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       <CardInput
         onChangeText={p => setPass(p)}
         style={{marginTop: 20}}
-        label="Enter Password"
+        label=" Password"
         svgType="pass"
         keyboardType={'numeric'}
         secureTextEntry={true}
