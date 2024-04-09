@@ -37,7 +37,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       <CardInput
         onChangeText={u => setUser(u)}
         style={{marginTop: 20}}
-        label=" Username"
+        label="Enter Username"
         svgType="user"
       />
       <CardInput
