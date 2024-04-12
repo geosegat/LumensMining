@@ -2,6 +2,7 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import AppText from '../../Componentes/AppText';
+import CardInput from '../../Componentes/CardInput';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const onPress = () => {
@@ -10,6 +11,7 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <AppText color="#fff">Cadastre-se</AppText>
+      <CardInput label="Email" />
       <Button title="voltar" onPress={onPress} />
     </View>
   );
