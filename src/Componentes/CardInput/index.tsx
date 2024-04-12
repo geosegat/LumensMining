@@ -5,7 +5,7 @@ import SvgUser from '../../svgs/user.svg';
 
 interface CardInputProps {
   label: string;
-  svgType: 'user' | 'pass';
+  svgType?: 'user' | 'pass';
   style?: {};
   keyboardType?: KeyboardTypeOptions | undefined;
   secureTextEntry?: boolean;
