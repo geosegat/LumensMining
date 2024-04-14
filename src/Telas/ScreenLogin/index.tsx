@@ -1,7 +1,7 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
-import CardInput from '../../Componentes/CardInput';
+import CardInput from '../../Componentes/CardInputLogin';
 import CardButton from '../../Componentes/CardButton';
 import SvgLogo from '../../svgs/bitcoin.svg';
 import CardLogo from '../../Componentes/CardLogo';

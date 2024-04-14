@@ -8,7 +8,7 @@ interface CardLogoProps {
 
 const CardLogo = ({label}: CardLogoProps) => {
   return (
-    <AppText color="#cfd2d4" variant="bold" size={'xxhuge'}>
+    <AppText color="#cfd2d4" variant="semiBold" size={'xxhuge'}>
       {label}
     </AppText>
   );
