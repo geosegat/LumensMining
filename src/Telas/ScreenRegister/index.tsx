@@ -2,7 +2,7 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import AppText from '../../Componentes/AppText';
-import CardInput from '../../Componentes/CardInput';
+import CardInput from '../../Componentes/CardInputLogin';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const onPress = () => {
