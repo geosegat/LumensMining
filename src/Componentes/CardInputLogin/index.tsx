@@ -27,8 +27,8 @@ const CardInput = ({
       <SvgComponent width={20} height={20} color={'#768186'} />
       <TextInput
         onChangeText={onChangeText}
-        style={{marginLeft: 15, color: '#fff'}}
-        placeholderTextColor={'#566269'}
+        style={{marginLeft: 10, color: '#fff'}}
+        placeholderTextColor={'#'}
         placeholder={label}
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
