@@ -28,7 +28,7 @@ const CardInput = ({
       <TextInput
         onChangeText={onChangeText}
         style={{marginLeft: 15, color: '#fff'}}
-        placeholderTextColor={'#566269'}
+        placeholderTextColor={'#'}
         placeholder={label}
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
