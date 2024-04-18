@@ -20,7 +20,7 @@ const CardInput = ({
   secureTextEntry,
   onChangeText,
 }: CardInputProps) => {
-  const SvgComponent = svgType === '' ? SvgUser : SvgPass;
+  const SvgComponent = svgType === 'user' ? SvgUser : SvgPass;
 
   return (
     <View style={[styles.container, style]}>
