@@ -1,4 +1,11 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
@@ -51,7 +58,10 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       <AppText style={{marginTop: 10}} color={'gray'}>
         {message}
       </AppText>
-      <CardButton style={{marginTop: 20}} label="Login" onPress={onPress} />
+      <CardButton style={{marginTop: 10}} label="Login" onPress={onPress} />
+      <TouchableOpacity style={{marginTop: 10, alignItems: 'center'}}>
+        <AppText color="white">Esqueceu sua senha?</AppText>
+      </TouchableOpacity>
     </View>
   );
 };
