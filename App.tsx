@@ -20,7 +20,7 @@ const App = () => {
         <Stack.Screen
           name="ScreenLogin"
           component={ScreenLogin}
-          options={{headerShown: true}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="ScreenRegister"
