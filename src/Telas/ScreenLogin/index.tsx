@@ -56,6 +56,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           svgType="pass"
           keyboardType={'numeric'}
           secureTextEntry={true}
+          maxLength={8}
         />
         <AppText style={styles.margin10} color={'gray'}>
           {message}
