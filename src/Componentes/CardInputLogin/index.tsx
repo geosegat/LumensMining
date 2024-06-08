@@ -7,6 +7,7 @@ interface CardInputProps {
   label: string;
   svgType?: 'user' | 'pass';
   style?: {};
+  maxLength?: number | undefined;
   keyboardType?: KeyboardTypeOptions | undefined;
   secureTextEntry?: boolean;
   onChangeText?: ((text: string) => void) | undefined;
@@ -18,6 +19,7 @@ const CardInput = ({
   style,
   keyboardType,
   secureTextEntry,
+  maxLength,
   onChangeText,
 }: CardInputProps) => {
   const SvgComponent = svgType === 'user' ? SvgUser : SvgPass;
@@ -26,6 +28,7 @@ const CardInput = ({
     <View style={[styles.container, style]}>
       <SvgComponent width={20} height={20} color={'#768186'} />
       <TextInput
+        maxLength={maxLength}
         onChangeText={onChangeText}
         style={{marginLeft: 10, color: '#fff'}}
         placeholderTextColor={'#566269'}
