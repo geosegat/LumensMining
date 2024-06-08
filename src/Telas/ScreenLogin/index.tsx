@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
@@ -13,37 +6,38 @@ import CardButton from '../../Componentes/CardButton';
 import SvgLogo from '../../svgs/bitcoin.svg';
 import CardLogo from '../../Componentes/CardLogo';
 import AppText from '../../Componentes/AppText';
-import SvgBack from '../../svgs/arrow-left.svg';
 import ButtonBack from '../../Componentes/ButtonBack';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onPress = () => {
-    if (user === '123' && pass === '123') {
-      setMessage('Senha ok');
-      setTimeout(() => {
-        navigation.navigate('ScreenAccount');
-      }, 1500);
-    } else {
-      setMessage('Senha errada');
-    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (user === '123' && pass === '123') {
+        setMessage('Senha ok');
+      } else {
+        setMessage('Senha errada');
+      }
+    }, 1500);
   };
 
   const onPressReturn = () => {
     navigation.navigate('ScreenInitial');
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#242c33', padding: 15}}>
+    <View style={styles.container}>
       <ButtonBack onPressReturn={onPressReturn} />
-      <View style={styles.container}>
-        <View style={{alignItems: 'center'}}>
+      <View style={styles.containerCenter}>
+        <View style={styles.containerLogo}>
           <SvgLogo width={100} height={100} color={'#cfd2d4'} />
           <CardLogo label={'Lumens'} />
           <CardLogo label={'Mining'} />
-          <AppText style={{marginTop: 10}} color="#fff">
+          <AppText style={styles.margin10} color="#fff">
             Pioneering a Decentralized Future
           </AppText>
           <AppText color="#fff">One Block at a Time.</AppText>
@@ -51,23 +45,28 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
 
         <CardInput
           onChangeText={u => setUser(u)}
-          style={{marginTop: 20}}
+          style={styles.margin20}
           label="Enter Username"
           svgType="user"
         />
         <CardInput
           onChangeText={p => setPass(p)}
-          style={{marginTop: 20}}
+          style={styles.margin20}
           label="Enter Password"
           svgType="pass"
           keyboardType={'numeric'}
           secureTextEntry={true}
         />
-        <AppText style={{marginTop: 10}} color={'gray'}>
+        <AppText style={styles.margin10} color={'gray'}>
           {message}
         </AppText>
-        <CardButton style={{marginTop: 10}} label="Login" onPress={onPress} />
-        <TouchableOpacity style={{marginTop: 10, alignItems: 'center'}}>
+        <CardButton
+          style={styles.margin10}
+          label="Login"
+          onPress={onPress}
+          loading={loading}
+        />
+        <TouchableOpacity style={styles.containerForgotPass}>
           <AppText color="white">Esqueceu sua senha?</AppText>
         </TouchableOpacity>
       </View>
@@ -78,8 +77,13 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
 export default ScreenLogin;
 
 const styles = StyleSheet.create({
-  container: {
+  container: {flex: 1, backgroundColor: '#242c33', padding: 15},
+  containerCenter: {
     flex: 1,
     justifyContent: 'center',
   },
+  containerLogo: {alignItems: 'center'},
+  margin10: {marginTop: 10},
+  margin20: {marginTop: 20},
+  containerForgotPass: {marginTop: 10, alignItems: 'center'},
 });
