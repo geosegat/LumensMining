@@ -16,17 +16,14 @@ const ScreenInitial: React.FC<NavigationProps> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
-        <SvgLogo width={100} height={100} color={'#cfd2d4'} />
-        <CardLogo label={'Lumens'} />
-        <CardLogo label={'Mining'} />
-        <AppText style={{marginTop: 10}} color="#fff">
-          Pioneering a Decentralized Future
-        </AppText>
-        <AppText color="#fff">One Block at a Time.</AppText>
-      </View>
+      <CardLogo
+        label="Lumens"
+        label2="Mining"
+        label3="Pioneering a Decentralized Future"
+        label4="One Block at a Time."
+      />
 
-      <View style={{marginTop: 50}}>
+      <View style={{marginTop: 30}}>
         <CardButton label="Login" onPress={onPressLogin} />
         <CardButton
           style={{marginTop: 15}}
