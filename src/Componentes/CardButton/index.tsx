@@ -13,7 +13,7 @@ const CardButton = ({label, onPress, style, loading}: CardButtonProps) => {
   return (
     <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
       {loading ? (
-        <ActivityIndicator color={'black'} />
+        <ActivityIndicator color={'white'} />
       ) : (
         <AppText color="#cfd2d4" size="large" variant="bold">
           {label ?? 'Next'}
