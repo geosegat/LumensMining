@@ -1,9 +1,8 @@
-import {Alert, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
 import CardButton from '../../Componentes/CardButton';
-import SvgLogo from '../../svgs/bitcoin.svg';
 import CardLogo from '../../Componentes/CardLogo';
 import AppText from '../../Componentes/AppText';
 import ButtonBack from '../../Componentes/ButtonBack';
@@ -19,11 +18,16 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
     setTimeout(() => {
       setLoading(false);
       if (user === '123' && pass === '123') {
-        setMessage('Senha ok');
+        navigation.navigate('ScreenAccount');
       } else {
         setMessage('Senha errada');
       }
     }, 1000);
+  };
+
+  const onPressTeste = () => {
+    setUser('123');
+    setPass('123');
   };
 
   const onPressReturn = () => {
@@ -33,21 +37,19 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
     <View style={styles.container}>
       <ButtonBack onPressReturn={onPressReturn} />
       <View style={styles.containerCenter}>
-        <View style={styles.containerLogo}>
-          <SvgLogo width={100} height={100} color={'#cfd2d4'} />
-          <CardLogo label={'Lumens'} />
-          <CardLogo label={'Mining'} />
-          <AppText style={styles.margin10} color="#fff">
-            Pioneering a Decentralized Future
-          </AppText>
-          <AppText color="#fff">One Block at a Time.</AppText>
-        </View>
+        <CardLogo
+          label="Lumens"
+          label2="Mining"
+          label3="Pioneering a Decentralized Future"
+          label4="One Block at a Time."
+        />
 
         <CardInput
           onChangeText={u => setUser(u)}
           style={styles.margin20}
           label="Enter Username"
           svgType="user"
+          value={user}
         />
         <CardInput
           onChangeText={p => setPass(p)}
@@ -57,6 +59,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           keyboardType={'numeric'}
           secureTextEntry={true}
           maxLength={8}
+          value={pass}
         />
         <AppText style={styles.margin10} color={'gray'}>
           {message}
@@ -67,7 +70,9 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           onPress={onPress}
           loading={loading}
         />
-        <TouchableOpacity style={styles.containerForgotPass}>
+        <TouchableOpacity
+          onPress={onPressTeste}
+          style={styles.containerForgotPass}>
           <AppText style={styles.link} color="white">
             Esqueceu sua senha?
           </AppText>
