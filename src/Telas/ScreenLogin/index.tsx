@@ -23,7 +23,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       } else {
         setMessage('Senha errada');
       }
-    }, 1500);
+    }, 1000);
   };
 
   const onPressReturn = () => {
@@ -68,7 +68,9 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           loading={loading}
         />
         <TouchableOpacity style={styles.containerForgotPass}>
-          <AppText color="white">Esqueceu sua senha?</AppText>
+          <AppText style={styles.link} color="white">
+            Esqueceu sua senha?
+          </AppText>
         </TouchableOpacity>
       </View>
     </View>
@@ -87,4 +89,5 @@ const styles = StyleSheet.create({
   margin10: {marginTop: 10},
   margin20: {marginTop: 20},
   containerForgotPass: {marginTop: 10, alignItems: 'center'},
+  link: {textDecorationLine: 'underline'},
 });
