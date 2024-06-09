@@ -30,7 +30,7 @@ const App = () => {
         <Stack.Screen
           name="ScreenAccount"
           component={ScreenAccount}
-          options={{headerShown: true}}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

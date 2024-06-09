@@ -1,18 +1,59 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import AppText from '../../Componentes/AppText';
 import CardInput from '../../Componentes/CardInputLogin';
+import CardButton from '../../Componentes/CardButton';
+import CardLogo from '../../Componentes/CardLogo';
+import ButtonBack from '../../Componentes/ButtonBack';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
-  const onPress = () => {
+  const [loading, setLoading] = useState(false);
+  const onPressReturn = () => {
     navigation.navigate('ScreenInitial');
+  };
+
+  const handleRegistrationSuccess = () => {
+    setLoading(true);
+    setTimeout(() => {
+      navigation.navigate('ScreenAccount');
+      setLoading(false);
+    }, 1000);
   };
   return (
     <View style={styles.container}>
-      <AppText color="#fff">Cadastre-se</AppText>
-      <CardInput label="Email" />
-      <Button title="voltar" onPress={onPress} />
+      <ButtonBack onPressReturn={onPressReturn} />
+      <View style={styles.container2}>
+        <CardLogo label="Lumens" label2="Mining" />
+        <View style={{alignItems: 'center', marginTop: 15}}>
+          <AppText size="xlarge" color="#fff">
+            Cadastre-se na Lumens Mining
+          </AppText>
+        </View>
+        <CardInput style={{marginTop: 15}} svgType="user" label="Usuário" />
+        <CardInput
+          svgType="pass"
+          label="Senha"
+          maxLength={6}
+          secureTextEntry={true}
+          keyboardType="numeric"
+        />
+        <CardInput
+          svgType="pass"
+          label="Confirme sua senha"
+          maxLength={6}
+          secureTextEntry={true}
+          keyboardType="numeric"
+        />
+        <CardInput svgType="email" label="Email" />
+        <CardInput svgType="cpf" label="Cpf" keyboardType="numeric" />
+        <CardButton
+          style={{marginTop: 20}}
+          label="Cadastrar"
+          onPress={handleRegistrationSuccess}
+          loading={loading}
+        />
+      </View>
     </View>
   );
 };
@@ -24,6 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#242c33',
     flex: 1,
     padding: 15,
-    alignItems: 'center',
   },
+  container2: {justifyContent: 'center', flex: 1},
 });
