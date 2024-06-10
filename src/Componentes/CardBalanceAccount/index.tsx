@@ -8,7 +8,11 @@ const CardBalanceAccount = () => {
       <AppText size="xlarge" color="white" variant="semiBold">
         Balance
       </AppText>
-      <AppText size="xlarge" color="white" variant="semiBold">
+      <AppText
+        style={{marginTop: 5}}
+        size="xlarge"
+        color="white"
+        variant="semiBold">
         R$: 2.624,52
       </AppText>
     </View>
@@ -20,7 +24,7 @@ export default CardBalanceAccount;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: '#114aa0',
+    backgroundColor: '#265162',
     borderRadius: 10,
     alignItems: 'center',
   },
