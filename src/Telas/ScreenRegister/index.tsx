@@ -31,6 +31,7 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
           </AppText>
         </View>
         <CardInput style={{marginTop: 15}} svgType="user" label="Usuário" />
+        <CardInput svgType="cpf" label="Cpf" keyboardType="numeric" />
         <CardInput
           svgType="pass"
           label="Senha"
@@ -46,7 +47,7 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
           keyboardType="numeric"
         />
         <CardInput svgType="email" label="Email" />
-        <CardInput svgType="cpf" label="Cpf" keyboardType="numeric" />
+
         <CardButton
           style={{marginTop: 20}}
           label="Cadastrar"
