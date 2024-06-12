@@ -17,7 +17,7 @@ const CardLogo = ({label, label2, label3, label4}: CardLogoProps) => {
       <AppText color="#cfd2d4" variant="semiBold" size={'xxhuge'}>
         {label}
       </AppText>
-      <AppText color="#cfd2d4" variant="semiBold" size={'xhuge'}>
+      <AppText color="#cfd2d4" variant="semiBold" size={'xxhuge'}>
         {label2}
       </AppText>
       {label3 ? (
