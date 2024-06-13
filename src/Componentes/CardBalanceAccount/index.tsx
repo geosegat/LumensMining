@@ -13,7 +13,7 @@ const CardBalanceAccount = () => {
         size="xlarge"
         color="white"
         variant="semiBold">
-        R$: 2.624,52 R$: 2.624,52
+        R$: 2.624,52
       </AppText>
     </View>
   );
