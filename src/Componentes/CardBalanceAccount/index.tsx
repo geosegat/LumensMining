@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import AppText from '../AppText';
+import CardMining from '../CardMining';
 
 const CardBalanceAccount = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('BRL');
