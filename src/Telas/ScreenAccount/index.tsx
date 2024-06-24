@@ -6,6 +6,7 @@ import ButtonBack from '../../Componentes/ButtonBack';
 import CardProfile from '../../Componentes/CardProfile';
 import AppText from '../../Componentes/AppText';
 import CardBalanceAccount from '../../Componentes/CardBalanceAccount';
+import CardMining from '../../Componentes/CardMining';
 
 const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
   const onPressReturn = () => {
@@ -17,6 +18,10 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
       <ButtonBack onPressReturn={onPressReturn} />
       <CardProfile label="Fulano Assado Da Silva" />
       <CardBalanceAccount />
+      <View>
+        <CardMining />
+        <CardMining />
+      </View>
     </View>
   );
 };
