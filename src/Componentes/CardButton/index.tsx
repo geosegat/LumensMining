@@ -27,7 +27,10 @@ const CardButton = ({
       {loading ? (
         <ActivityIndicator color={'white'} />
       ) : (
-        <AppText color={colorLabel} size="large" variant="bold">
+        <AppText
+          color={colorLabel ?? '#cfd2d4'}
+          size="large"
+          variant="semiBold">
           {label ?? 'Next'}
         </AppText>
       )}
