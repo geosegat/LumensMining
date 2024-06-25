@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import AppText from '../AppText';
-import CardMining from '../CardMining';
 
 const CardBalanceAccount = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('BRL');
@@ -51,7 +50,7 @@ export default CardBalanceAccount;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: '#265162',
+
     borderRadius: 10,
     alignItems: 'center',
   },
