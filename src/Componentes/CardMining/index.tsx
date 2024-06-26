@@ -23,7 +23,6 @@ const CardMining = () => {
         const now = Date.now();
         const elapsedTime = now - startTime;
         const newProgress = Math.min(1, elapsedTime / duration);
-        setTextState('Mineiração em andamento');
 
         setProgress(newProgress);
 
