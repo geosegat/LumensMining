@@ -4,6 +4,7 @@ import AppText from '../AppText';
 
 const CardBalanceAccount = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('BRL');
+  const [showBalance, setShowBalance] = useState(true);
 
   return (
     <View style={styles.container}>
@@ -39,8 +40,20 @@ const CardBalanceAccount = () => {
         size="xlarge"
         color="white"
         variant="semiBold">
-        {selectedCurrency === 'BRL' ? 'R$ 41,520.23' : '0.99 BTC'}
+        {showBalance
+          ? selectedCurrency === 'BRL'
+            ? 'R$ 41,520.23'
+            : '0.99 BTC'
+          : '*****'}
       </AppText>
+
+      <TouchableOpacity
+        style={styles.toggleButton}
+        onPress={() => setShowBalance(!showBalance)}>
+        <AppText size="large" color="white" variant="bold">
+          {showBalance ? 'Ocultar Saldo' : 'Mostrar Saldo'}
+        </AppText>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -50,7 +63,6 @@ export default CardBalanceAccount;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-
     borderRadius: 10,
     alignItems: 'center',
   },
@@ -59,5 +71,12 @@ const styles = StyleSheet.create({
   },
   selectedLink: {
     textDecorationLine: 'underline',
+  },
+  toggleButton: {
+    marginTop: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#a8a8a9',
+    borderRadius: 5,
   },
 });
