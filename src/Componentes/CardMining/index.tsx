@@ -4,11 +4,16 @@ import AppText from '../AppText';
 import * as Progress from 'react-native-progress';
 import CardButton from '../CardButton';
 
-const CardMining = () => {
+interface CardMiningProps {
+  onMineirado: (valorMineirado: number) => void;
+}
+
+const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
   const [progress, setProgress] = useState(0);
   const [isClaim, setIsClaim] = useState(false);
   const [textState, setTextState] = useState('Start');
   const [loading, setLoading] = useState(false);
+  const [valorMineirado, setValorMineirado] = useState(0);
 
   const startProgress = () => {
     if (!isClaim) {
@@ -16,7 +21,7 @@ const CardMining = () => {
       setIsClaim(false);
       setLoading(true);
 
-      const duration = 5000; // 10 segundos em milissegundos
+      const duration = 2000; // 2 segundos em milissegundos
       const startTime = Date.now();
 
       const animateProgress = () => {
@@ -44,6 +49,10 @@ const CardMining = () => {
       setProgress(0);
       setIsClaim(false);
       setTextState('Start');
+      setValorMineirado(0);
+      const mineiradoValue = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+      setValorMineirado(mineiradoValue);
+      onMineirado(mineiradoValue); // Passa o valor mineirado para o componente pai
     }
   };
 
@@ -59,7 +68,7 @@ const CardMining = () => {
             Bitcoin
           </AppText>
           <AppText color="gray" size="large">
-            R$420,20
+            Ultimo resgate: R${valorMineirado}
           </AppText>
         </View>
         <CardButton
