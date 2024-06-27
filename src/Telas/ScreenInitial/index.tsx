@@ -1,10 +1,8 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import AppText from '../../Componentes/AppText';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardButton from '../../Componentes/CardButton';
 import CardLogo from '../../Componentes/CardLogo';
-import SvgLogo from '../../svgs/bitcoin.svg';
 
 const ScreenInitial: React.FC<NavigationProps> = ({navigation}) => {
   const onPressLogin = () => {
