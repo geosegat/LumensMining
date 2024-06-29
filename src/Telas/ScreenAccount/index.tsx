@@ -46,9 +46,7 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
               24/h
             </AppText>
           </View>
-          {/* <CardMining onMineirado={handleMineirado} />
-          <CardMining onMineirado={handleMineirado} /> */}
-          <CardAddMaisMaquina />
+          <CardMining onMineirado={handleMineirado} />
           <CardAddMaisMaquina />
           <CardAddMaisMaquina />
         </ScrollView>
