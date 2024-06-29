@@ -10,7 +10,7 @@ const CardAddMaisMaquina = () => {
         backgroundColor: '#191918',
         borderRadius: 10,
         elevation: 5,
-        marginBottom: 15,
+        marginBottom: 12,
         padding: 15,
       }}>
       <SvgMais color={'gray'} width={105} height={105} />
