@@ -50,7 +50,7 @@ const CardBalanceAccount = () => {
       <TouchableOpacity
         style={styles.toggleButton}
         onPress={() => setShowBalance(!showBalance)}>
-        <AppText size="large" color="white" variant="bold">
+        <AppText size="large" color="black" variant="bold">
           {showBalance ? 'Ocultar Saldo' : 'Mostrar Saldo'}
         </AppText>
       </TouchableOpacity>
