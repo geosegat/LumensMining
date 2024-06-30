@@ -1,4 +1,4 @@
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Button, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
@@ -6,6 +6,7 @@ import CardButton from '../../Componentes/CardButton';
 import CardLogo from '../../Componentes/CardLogo';
 import AppText from '../../Componentes/AppText';
 import ButtonBack from '../../Componentes/ButtonBack';
+import auth from '@react-native-firebase/auth';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
   const [message, setMessage] = useState('');
@@ -15,20 +16,18 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
 
   const onPress = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      if (user === '123' && pass === '123') {
-        navigation.navigate('ScreenAccount');
-      } else {
-        setMessage('Senha errada');
-      }
-    }, 1000);
+    auth()
+      .signInWithEmailAndPassword(user, pass)
+      .then(() => navigation.navigate('ScreenAccount'))
+      .catch(() => setMessage('Deu erro'));
   };
 
   const onPressTeste = () => {
-    setUser('123');
-    setPass('123');
+    setUser('geosegat@gmail.com');
+    setPass('020296');
   };
+
+  const sendPasswordResetEmail = () => auth().sendPasswordResetEmail(user);
 
   const onPressReturn = () => {
     navigation.navigate('ScreenInitial');
@@ -51,6 +50,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           svgType="user"
           value={user}
         />
+
         <CardInput
           onChangeText={p => setPass(p)}
           style={styles.margin20}
@@ -71,7 +71,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           loading={loading}
         />
         <TouchableOpacity
-          onPress={onPressTeste}
+          onPress={sendPasswordResetEmail}
           style={styles.containerForgotPass}>
           <AppText style={styles.link} color="white">
             Esqueceu sua senha?
