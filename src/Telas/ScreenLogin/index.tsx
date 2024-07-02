@@ -10,24 +10,47 @@ import auth from '@react-native-firebase/auth';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
   const [message, setMessage] = useState('');
-  const [user, setUser] = useState('');
-  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const onPress = () => {
     setLoading(true);
+    if (email.trim() === '' || password.trim() === '') {
+      setTimeout(() => {
+        setMessage('Email e senha são obrigatórios');
+        setLoading(false);
+      }, 1000);
+      return;
+    }
+
     auth()
-      .signInWithEmailAndPassword(user, pass)
-      .then(() => navigation.navigate('ScreenAccount'))
-      .catch(() => setMessage('Deu erro'));
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate('ScreenAccount');
+        setLoading(false);
+        setMessage('');
+      })
+      .catch(error => {
+        setLoading(false);
+        // if (error.code === 'auth/user-not-found') {
+        //   setMessage('Usuário não encontrado. Verifique o email digitado.');
+        // } else if (error.code === 'auth/wrong-password') {
+        //   setMessage('Senha incorreta. Verifique a senha digitada.');
+        // } else if (error.code === 'auth/invalid-email') {
+        //   setMessage('Digite um e-mail válido.');
+        // } else {
+        //   setMessage('Erro ao fazer login. Tente novamente mais tarde.');
+        // }
+        console.log(error);
+      });
   };
 
   const onPressTeste = () => {
-    setUser('geosegat@gmail.com');
-    setPass('020296');
+    setEmail('geosegat@gmail.com');
+    setPassword('020296');
   };
-
-  const sendPasswordResetEmail = () => auth().sendPasswordResetEmail(user);
+  const sendPasswordResetEmail = () => auth().sendPasswordResetEmail(email);
 
   const onPressReturn = () => {
     navigation.navigate('ScreenInitial');
@@ -37,31 +60,29 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       <ButtonBack onPressReturn={onPressReturn} />
       <View style={styles.containerCenter}>
         <CardLogo
-          label="Lumens"
-          label2="Mining"
           label3="Pioneering a Decentralized Future"
           label4="One Block at a Time."
         />
 
         <CardInput
-          onChangeText={u => setUser(u)}
+          onChangeText={u => setEmail(u)}
           style={styles.margin20}
-          label="Enter Username"
-          svgType="user"
-          value={user}
+          label="Enter email"
+          svgType="email"
+          value={email}
         />
 
         <CardInput
-          onChangeText={p => setPass(p)}
+          onChangeText={p => setPassword(p)}
           style={styles.margin20}
           label="Enter Password"
           svgType="pass"
           keyboardType={'numeric'}
           secureTextEntry={true}
           maxLength={8}
-          value={pass}
+          value={password}
         />
-        <AppText style={styles.margin10} color={'gray'}>
+        <AppText style={styles.margin10} color={'#fff'}>
           {message}
         </AppText>
         <CardButton
@@ -75,6 +96,13 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
           style={styles.containerForgotPass}>
           <AppText style={styles.link} color="white">
             Esqueceu sua senha?
+          </AppText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={onPressTeste}
+          style={styles.containerForgotPass}>
+          <AppText style={styles.link} color="white">
+            Preencher dados
           </AppText>
         </TouchableOpacity>
       </View>

@@ -43,7 +43,11 @@ const CardInput = ({
       <TextInput
         maxLength={maxLength}
         onChangeText={onChangeText}
-        style={{marginLeft: 10, color: '#fff'}}
+        style={{
+          marginLeft: 10,
+          color: '#fff',
+          flex: 1,
+        }}
         placeholderTextColor={'#b3b3b3'}
         placeholder={label}
         keyboardType={keyboardType}
