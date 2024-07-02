@@ -15,6 +15,7 @@ import SvgHome from './src/svgs/home.svg';
 import SvgWallet from './src/svgs/wallet.svg';
 import SvgTransacao from './src/svgs/transacao.svg';
 import SvgSettings from './src/svgs/settings.svg';
+import SvgProfile from './src/svgs/profile.svg';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ const TabNavigator = () => {
         component={ScreenAccountSettings}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SvgSettings color={color} width={size} height={size} />
+            <SvgProfile color={color} width={size} height={size} />
           ),
         }}
       />
