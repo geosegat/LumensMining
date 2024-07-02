@@ -15,8 +15,6 @@ const ScreenInitial: React.FC<NavigationProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <CardLogo
-        label="Lumens"
-        label2="Mining"
         label3="Pioneering a Decentralized Future"
         label4="One Block at a Time."
       />

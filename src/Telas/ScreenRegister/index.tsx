@@ -10,6 +10,7 @@ import auth from '@react-native-firebase/auth';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const [loading, setLoading] = useState(false);
+  const [nameUser, setNameUser] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cpf, setCpf] = useState('');
@@ -20,7 +21,6 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const handleRegistrationSuccess = () => {
     setLoading(true);
     if (email.trim() === '' || password.trim() === '') {
-      // Verifica se email ou senha estão vazios
       console.log('Email e senha são obrigatórios');
       return;
     }
@@ -30,12 +30,10 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
       .then(() => {
         console.log('Usuário criado com sucesso');
         setLoading(false);
-        // Navegar para a próxima tela ou realizar outras ações após o registro
       })
       .catch(error => {
         setLoading(false);
         console.error('Erro ao registrar usuário:', error);
-        // Trate o erro adequadamente, exibindo uma mensagem ao usuário, por exemplo
       });
   };
 
@@ -44,28 +42,30 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
       <ButtonBack onPressReturn={onPressReturn} />
       <View style={styles.container2}>
         <CardLogo label="Lumens" label2="Mining" />
-        <View style={{alignItems: 'center', marginTop: 15}}>
+        <View style={{alignItems: 'center', marginBottom: 10}}>
           <AppText size="xlarge" color="#fff">
-            Cadastre-se na Lumens Mining
+            Cadastre-se agora na Lumens Mining
           </AppText>
         </View>
         <CardInput
-          onChangeText={text => setEmail(text)}
+          onChangeText={nameUser => setNameUser(nameUser)}
           svgType="user"
           label="Nome"
         />
         <CardInput
-          onChangeText={text => setEmail(text)}
+          onChangeText={email => setEmail(email)}
           svgType="email"
           label="Email"
         />
         <CardInput
-          onChangeText={text => setEmail(text)}
+          onChangeText={cpf => setCpf(cpf)}
+          keyboardType="numeric"
           svgType="cpf"
           label="Cpf"
+          maxLength={11}
         />
         <CardInput
-          onChangeText={text => setPassword(text)}
+          onChangeText={password => setPassword(password)}
           svgType="pass"
           label="Senha"
           maxLength={6}

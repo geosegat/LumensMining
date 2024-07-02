@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import SvgSeta from '../../svgs/seta.svg';
@@ -7,6 +7,7 @@ import CardBalanceAccount from '../../Componentes/CardBalanceAccount';
 import AppText from '../../Componentes/AppText';
 import CardAddMaisMaquina from '../../Componentes/CardAddMaisMaquina';
 import CardMining from '../../Componentes/CardMining';
+import CardTopoBar from '../../Componentes/CardTopoBar';
 
 const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
   const [totalMineirado, setTotalMineirado] = useState(0);
@@ -18,7 +19,19 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
   return (
     <View style={{backgroundColor: '#242c33', flex: 1}}>
       <View style={styles.container}>
+        <Image
+          style={{
+            width: '100%',
+            height: '100%',
+            flex: 1,
+            resizeMode: 'cover',
+            position: 'absolute',
+          }}
+          source={require('../../svgs/pngConvert/img-background.jpg')}
+        />
+
         <View style={{padding: 15}}>
+          <CardTopoBar />
           <CardProfile label="Fulano Assado Da Silva" />
           <CardBalanceAccount />
         </View>
@@ -47,8 +60,6 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
             </AppText>
           </View>
           <CardMining onMineirado={handleMineirado} />
-          <CardAddMaisMaquina />
-          <CardAddMaisMaquina />
         </ScrollView>
       </View>
     </View>

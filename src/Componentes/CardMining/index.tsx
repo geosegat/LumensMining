@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#191918',
     borderRadius: 10,
-    elevation: 5,
     marginBottom: 10,
   },
   progressBar: {
