@@ -10,7 +10,7 @@ const CardProfile = ({label}: CardProfileProps) => {
   return (
     <View style={styles.container}>
       <Image
-        style={{width: 40, height: 40}}
+        style={{width: 55, height: 55}}
         source={require('../../svgs/pngConvert/perfil.png')}
       />
       <AppText
