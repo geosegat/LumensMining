@@ -113,7 +113,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
 export default ScreenLogin;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#242c33', padding: 15},
+  container: {flex: 1, backgroundColor: '#1a1d1b', padding: 15},
   containerCenter: {
     flex: 1,
     justifyContent: 'center',

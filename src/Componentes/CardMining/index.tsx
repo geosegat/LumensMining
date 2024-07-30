@@ -21,7 +21,7 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
       setIsClaim(false);
       setLoading(true);
 
-      const duration = 2000; // 2 segundos em milissegundos
+      const duration = 2000;
       const startTime = Date.now();
 
       const animateProgress = () => {
@@ -73,14 +73,14 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
         </View>
         <CardButton
           loading={loading}
-          colorLabel="black"
+          colorLabel="#fff"
           disabled={progress > 0 && !isClaim}
           label={textState}
           onPress={isClaim ? handleClaim : startProgress}
           style={{
-            backgroundColor: '#bdc644',
+            backgroundColor: '#673ab7',
             borderRadius: 7,
-            padding: 5,
+            padding: 6,
           }}
         />
       </View>
@@ -89,7 +89,7 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
           progress={progress}
           width={300}
           height={10}
-          color="#bdc644"
+          color="#673ab7"
           unfilledColor="#e0e0e0"
           borderColor="#000"
           borderRadius={5}
