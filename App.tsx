@@ -24,10 +24,11 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#bdc644',
+        tabBarActiveTintColor: '#9e81d7',
+        tabBarInactiveTintColor: '#59457a',
         tabBarShowLabel: false,
         headerShown: false,
-        tabBarStyle: {backgroundColor: '#242c33', borderTopWidth: 0},
+        tabBarStyle: {backgroundColor: '#130b23', borderTopWidth: 0},
       }}>
       <Tab.Screen
         name="Home"
