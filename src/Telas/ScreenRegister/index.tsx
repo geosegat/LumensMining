@@ -88,7 +88,7 @@ export default ScreenRegister;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#242c33',
+    backgroundColor: '#1a1d1b',
     flex: 1,
     padding: 15,
   },
