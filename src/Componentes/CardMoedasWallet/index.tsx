@@ -11,7 +11,12 @@ interface CardMoedasWallet {
 const CardMoedasWallet: React.FC<CardMoedasWallet> = ({style}) => {
   return (
     <View style={[styles.container, style]}>
-      <CollectionSvgImg iconName="bitcoinImg" width={30} height={30} />
+      <CollectionSvgImg
+        isDisabled
+        iconName="bitcoinImg"
+        width={30}
+        height={30}
+      />
       <AppText size="huge" style={styles.saldo} color="white">
         Saldos
       </AppText>

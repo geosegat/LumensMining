@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenLogin from './src/Telas/ScreenLogin';
 import ScreenRegister from './src/Telas/ScreenRegister';
-import ScreenInitial from './src/Telas/ScreenInitial';
+import ScreenInitial from './src/Telas/ScreenHome';
 import ScreenAccount from './src/Telas/ScreenAccount';
 import ScreenWallet from './src/Telas/ScreenWallet';
 import ScreenTransactions from './src/Telas/ScreenTransactions';
