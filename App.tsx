@@ -9,13 +9,8 @@ import ScreenInitial from './src/Telas/ScreenInitial';
 import ScreenAccount from './src/Telas/ScreenAccount';
 import ScreenWallet from './src/Telas/ScreenWallet';
 import ScreenTransactions from './src/Telas/ScreenTransactions';
-import ScreenMiningMachines from './src/Telas/ScreenMiningMachines';
 import ScreenAccountSettings from './src/Telas/ScreenAccountSettings';
-import SvgHome from './src/svgs/home.svg';
-import SvgWallet from './src/svgs/wallet.svg';
-import SvgTransacao from './src/svgs/transacao.svg';
-import SvgSettings from './src/svgs/settings.svg';
-import SvgProfile from './src/svgs/profile.svg';
+import CollectionSvgImg from './src/utilitis/CollectionSvgImg';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,7 +30,13 @@ const TabNavigator = () => {
         component={ScreenAccount}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SvgHome color={color} width={size} height={size} />
+            <CollectionSvgImg
+              isDisabled
+              color={color}
+              width={size}
+              height={size}
+              iconName={'home'}
+            />
           ),
         }}
       />
@@ -44,7 +45,13 @@ const TabNavigator = () => {
         component={ScreenWallet}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SvgWallet color={color} width={size} height={size} />
+            <CollectionSvgImg
+              isDisabled
+              color={color}
+              width={size}
+              height={size}
+              iconName={'wallet'}
+            />
           ),
         }}
       />
@@ -53,7 +60,13 @@ const TabNavigator = () => {
         component={ScreenTransactions}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SvgTransacao color={color} width={size} height={size} />
+            <CollectionSvgImg
+              isDisabled
+              color={color}
+              width={size}
+              height={size}
+              iconName={'transacao'}
+            />
           ),
         }}
       />
@@ -63,7 +76,13 @@ const TabNavigator = () => {
         component={ScreenAccountSettings}
         options={{
           tabBarIcon: ({color, size}) => (
-            <SvgProfile color={color} width={size} height={size} />
+            <CollectionSvgImg
+              isDisabled
+              color={color}
+              width={size}
+              height={size}
+              iconName={'perfil'}
+            />
           ),
         }}
       />
