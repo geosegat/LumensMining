@@ -8,7 +8,7 @@ import CollectionSvgImg from '../../utilitis/CollectionSvgImg';
 import CardTransacoes from '../../Componentes/CardTransacoes';
 
 const ScreenWallet: React.FC<NavigationProps> = ({navigation}) => {
-  const [valorRecebido, setValoRecebido] = useState<string>('0.000000000012');
+  const [valorRecebido, setValoRecebido] = useState<number>(0.00006769);
 
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ const ScreenWallet: React.FC<NavigationProps> = ({navigation}) => {
       </View>
       <ScrollView>
         <CardTransacoes iconName="ethImg" moeda="eth" />
-        <CardTransacoes iconName="arkImg" moeda="ark" />
+        <CardTransacoes iconName="arkImg" moeda="ark" value={11.72506138} />
         <CardTransacoes iconName="bitImg" />
         <CardTransacoes iconName="dashImg" moeda="dash" value={valorRecebido} />
         <CardTransacoes />
