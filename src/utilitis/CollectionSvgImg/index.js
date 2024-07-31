@@ -5,6 +5,7 @@ import SvgHome from '../../svgs/home.svg';
 import SvgWallet from '../../svgs/wallet.svg';
 import SvgTransacoes from '../../svgs/transacao.svg';
 import SvgPerfil from '../../svgs/profile.svg';
+import SvgClaim from '../../svgs/claim.svg';
 
 const CollectionSvgImg = ({
   iconName = 'home',
@@ -37,10 +38,45 @@ const CollectionSvgImg = ({
     case 'perfil':
       iconComponent = <SvgPerfil width={width} height={height} color={color} />;
       break;
+    case 'claim':
+      iconComponent = <SvgClaim width={width} height={height} color={color} />;
+      break;
     case 'bitcoinImg':
       iconComponent = (
         <Image
           source={require('../../svgs/pngConvert/bitcoinIcon.png')}
+          style={{height: height, width: width}}
+        />
+      );
+      break;
+    case 'ethImg':
+      iconComponent = (
+        <Image
+          source={require('../../svgs/pngConvert/etheriumIcon.png')}
+          style={{height: height, width: width}}
+        />
+      );
+      break;
+    case 'arkImg':
+      iconComponent = (
+        <Image
+          source={require('../../svgs/pngConvert/arkIcon.png')}
+          style={{height: height, width: width}}
+        />
+      );
+      break;
+    case 'bitImg':
+      iconComponent = (
+        <Image
+          source={require('../../svgs/pngConvert/bitcoin.png')}
+          style={{height: height, width: width}}
+        />
+      );
+      break;
+    case 'dashImg':
+      iconComponent = (
+        <Image
+          source={require('../../svgs/pngConvert/dashIcon.png')}
           style={{height: height, width: width}}
         />
       );

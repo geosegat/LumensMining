@@ -8,18 +8,24 @@ const CardBalanceCritpomoeda = () => {
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
-        <CollectionSvgImg iconName="bitcoinImg" width={30} height={30} />
+        <CollectionSvgImg
+          isDisabled
+          iconName="bitcoinImg"
+          width={30}
+          height={30}
+        />
         <View style={{marginLeft: 15}}>
-          <AppText size="huge" color="#fff">
+          <AppText size="xhuge" color="#fff">
             Bitcoin
           </AppText>
-          <AppText size="xxlarge" color="#fff">
-            0.0005158 btc
+          <AppText size="xxxlarge" color="#fff">
+            0.00000000000014 btc
           </AppText>
         </View>
       </View>
-
-      <ButtomImgLabel iconName="setting" label="Levantar" />
+      <View style={styles.containerButtomClaim}>
+        <ButtomImgLabel iconName="claim" label="Retirar fundos" />
+      </View>
     </View>
   );
 };
@@ -35,4 +41,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   containerImg: {width: 30, height: 30},
+  containerButtomClaim: {alignItems: 'flex-end', marginTop: 20},
 });

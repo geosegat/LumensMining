@@ -4,7 +4,7 @@ import {NavigationProps} from '../../utilitis/types/navigation';
 import CardButton from '../../Componentes/CardButton';
 import CardLogo from '../../Componentes/CardLogo';
 
-const ScreenInitial: React.FC<NavigationProps> = ({navigation}) => {
+const ScreenHome: React.FC<NavigationProps> = ({navigation}) => {
   const onPressLogin = () => {
     navigation.navigate('ScreenLogin');
   };
@@ -31,7 +31,7 @@ const ScreenInitial: React.FC<NavigationProps> = ({navigation}) => {
   );
 };
 
-export default ScreenInitial;
+export default ScreenHome;
 
 const styles = StyleSheet.create({
   container: {
