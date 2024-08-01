@@ -5,28 +5,42 @@ import SvgSeta from '../../svgs/seta.svg';
 import CardProfile from '../../Componentes/CardProfile';
 import CardBalanceAccount from '../../Componentes/CardBalanceAccount';
 import AppText from '../../Componentes/AppText';
-import CardAddMaisMaquina from '../../Componentes/CardAddMaisMaquina';
 import CardMining from '../../Componentes/CardMining';
 import CardTopoBar from '../../Componentes/CardTopoBar';
 
-const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
-  const [totalMineirado, setTotalMineirado] = useState(0);
+// Valores das moedas em reais
+const BITCOIN_VALOR = 367248.56; // Valor em reais por Bitcoin
+const DASH_VALOR = 146.63; // Valor em reais por Dash
 
-  const handleMineirado = (valorMineirado: number) => {
-    setTotalMineirado(prevTotal => prevTotal + valorMineirado);
+const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
+  const [totalMineiradoBTC, setTotalMineiradoBTC] = useState(0);
+  const [totalMineiradoDASH, setTotalMineiradoDASH] = useState(0);
+
+  // Função para calcular o valor em reais
+  const calcularValorEmReais = (
+    quantidade: number,
+    valorPorUnidade: number,
+  ) => {
+    return quantidade * valorPorUnidade;
   };
 
+  const handleMineirado = (valorMineirado: number, tipo: 'BTC' | 'DASH') => {
+    if (tipo === 'BTC') {
+      setTotalMineiradoBTC(prevTotal => prevTotal + valorMineirado);
+    } else if (tipo === 'DASH') {
+      setTotalMineiradoDASH(prevTotal => prevTotal + valorMineirado);
+    }
+  };
+
+  const totalMineiradoReais =
+    calcularValorEmReais(totalMineiradoBTC, BITCOIN_VALOR) +
+    calcularValorEmReais(totalMineiradoDASH, DASH_VALOR);
+
   return (
-    <View style={{backgroundColor: '#242c33', flex: 1}}>
+    <View style={styles.containerGlobal}>
       <View style={styles.container}>
         <Image
-          style={{
-            width: '100%',
-            height: '100%',
-            flex: 1,
-            resizeMode: 'cover',
-            position: 'absolute',
-          }}
+          style={styles.styleBackGround}
           source={require('../../svgs/pngConvert/img-background.jpg')}
         />
 
@@ -41,7 +55,8 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginBottom: 20,
+              marginBottom: 10,
+              padding: 10,
             }}>
             <AppText color="#fff" size="xxlarge" variant="bold">
               Mineração
@@ -53,13 +68,30 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
               height={24}
             />
             <AppText style={styles.marginLeft} color="#FFF" size="xlarge">
-              R${totalMineirado}
+              R${totalMineiradoReais.toFixed(2)}
             </AppText>
             <AppText style={styles.marginLeft} color="#FFF" size="small">
               24/h
             </AppText>
           </View>
-          <CardMining onMineirado={handleMineirado} />
+          <CardMining
+            iconName="bitcoinImg"
+            criptoName="Bitcoin"
+            onMineirado={valorMineirado =>
+              handleMineirado(valorMineirado, 'BTC')
+            }
+            moedaValor={BITCOIN_VALOR}
+          />
+
+          <CardMining
+            iconName="dashImg"
+            criptoName="Dash"
+            onMineirado={valorMineirado =>
+              handleMineirado(valorMineirado, 'DASH')
+            }
+            moedaValor={DASH_VALOR}
+            casasDecimais={5} // Adiciona a configuração de casas decimais
+          />
         </ScrollView>
       </View>
     </View>
@@ -69,13 +101,21 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
 export default ScreenAccount;
 
 const styles = StyleSheet.create({
+  containerGlobal: {backgroundColor: '#242c33', flex: 1},
   container: {
     backgroundColor: '#242c33',
     flex: 1,
   },
+  styleBackGround: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    resizeMode: 'cover',
+    position: 'absolute',
+  },
   containerScrollView: {
     backgroundColor: '#1a1d1b',
-    padding: 15,
+    padding: 5,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
