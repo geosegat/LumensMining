@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   buttonMoedas: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#673ab7',
+    backgroundColor: '#00769f',
     padding: 10,
     borderRadius: 20,
   },
