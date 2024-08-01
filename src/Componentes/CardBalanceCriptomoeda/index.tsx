@@ -4,22 +4,34 @@ import AppText from '../AppText';
 import CollectionSvgImg from '../../utilitis/CollectionSvgImg';
 import ButtomImgLabel from '../ButtonImgLabel';
 
-const CardBalanceCritpomoeda = () => {
+interface CardBalanceCritpomoeda {
+  iconName?: string;
+  moeda?: string;
+  balance?: number;
+  criptoSigla?: string;
+}
+
+const CardBalanceCritpomoeda: React.FC<CardBalanceCritpomoeda> = ({
+  iconName,
+  moeda,
+  balance,
+  criptoSigla,
+}) => {
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
         <CollectionSvgImg
           isDisabled
-          iconName="bitcoinImg"
-          width={30}
-          height={30}
+          iconName={iconName ?? ''}
+          width={45}
+          height={45}
         />
         <View style={{marginLeft: 15}}>
           <AppText size="xhuge" color="#fff">
-            Bitcoin
+            {moeda}
           </AppText>
           <AppText size="xxxlarge" color="#fff">
-            0.00000000000014 btc
+            {balance} {criptoSigla}
           </AppText>
         </View>
       </View>
@@ -34,10 +46,10 @@ export default CardBalanceCritpomoeda;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#281748',
+    backgroundColor: '#002c53',
     padding: 10,
     borderWidth: 1,
-    borderColor: '#53446d',
+    borderColor: '#0874a5',
     borderRadius: 10,
   },
   containerImg: {width: 30, height: 30},
