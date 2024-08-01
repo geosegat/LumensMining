@@ -1,14 +1,24 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import AppText from '../AppText';
 import * as Progress from 'react-native-progress';
 import CardButton from '../CardButton';
+import CollectionSvgImg from '../../utilitis/CollectionSvgImg';
 
 interface CardMiningProps {
   onMineirado: (valorMineirado: number) => void;
+  iconName?: string;
+  criptoName?: string;
+  moedaValor: number;
+  casasDecimais?: number; // Adicione esta linha
 }
 
-const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
+const CardMining: React.FC<CardMiningProps> = ({
+  onMineirado,
+  iconName,
+  criptoName,
+  moedaValor,
+}) => {
   const [progress, setProgress] = useState(0);
   const [isClaim, setIsClaim] = useState(false);
   const [textState, setTextState] = useState('Start');
@@ -49,10 +59,14 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
       setProgress(0);
       setIsClaim(false);
       setTextState('Start');
-      setValorMineirado(0);
-      const mineiradoValue = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
-      setValorMineirado(mineiradoValue);
-      onMineirado(mineiradoValue); // Passa o valor mineirado para o componente pai
+
+      // Calcular a quantidade minerada em moeda
+      const valorMineracaoReais =
+        Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+      const valorMineracaoMoeda = valorMineracaoReais / moedaValor;
+
+      setValorMineirado(valorMineracaoMoeda);
+      onMineirado(valorMineracaoMoeda); // Passa o valor mineirado para o componente pai
     }
   };
 
@@ -60,15 +74,17 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
     <View style={styles.container}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View style={{flex: 1}}>
-          <Image
-            source={require('../../svgs/pngConvert/bitcoinIcon.png')}
-            style={{width: 30, height: 30}}
+          <CollectionSvgImg
+            isDisabled
+            iconName={iconName ?? ''}
+            width={30}
+            height={30}
           />
           <AppText size="xlarge" variant="semiBold" color="white">
-            Bitcoin
+            {criptoName ?? 'Bitcoin'}
           </AppText>
           <AppText color="gray" size="large">
-            Ultimo resgate: R${valorMineirado}
+            Último resgate: {valorMineirado.toFixed(8)} {criptoName}
           </AppText>
         </View>
         <CardButton
@@ -78,7 +94,7 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
           label={textState}
           onPress={isClaim ? handleClaim : startProgress}
           style={{
-            backgroundColor: '#673ab7',
+            backgroundColor: '#002c53',
             borderRadius: 7,
             padding: 6,
           }}
@@ -89,7 +105,7 @@ const CardMining: React.FC<CardMiningProps> = ({onMineirado}) => {
           progress={progress}
           width={300}
           height={10}
-          color="#673ab7"
+          color="#002c53"
           unfilledColor="#e0e0e0"
           borderColor="#000"
           borderRadius={5}
