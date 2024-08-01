@@ -42,7 +42,7 @@ export default CardButton;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#114aa0',
+    backgroundColor: '#002c53',
     padding: 10,
     alignItems: 'center',
     borderRadius: 20,
