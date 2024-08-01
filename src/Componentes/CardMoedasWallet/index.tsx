@@ -6,9 +6,10 @@ import CollectionSvgImg from '../../utilitis/CollectionSvgImg';
 
 interface CardMoedasWallet {
   style?: StyleProp<ImageStyle>;
+  onPress?: () => {} | void;
 }
 
-const CardMoedasWallet: React.FC<CardMoedasWallet> = ({style}) => {
+const CardMoedasWallet: React.FC<CardMoedasWallet> = ({style, onPress}) => {
   return (
     <View style={[styles.container, style]}>
       <CollectionSvgImg
@@ -20,7 +21,7 @@ const CardMoedasWallet: React.FC<CardMoedasWallet> = ({style}) => {
       <AppText size="huge" style={styles.saldo} color="white">
         Saldos
       </AppText>
-      <ButtomImgLabel label="Moedas" iconName="setting" />
+      <ButtomImgLabel onPress={onPress} label="Moedas" iconName="setting" />
     </View>
   );
 };
