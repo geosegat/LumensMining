@@ -23,7 +23,6 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       }, 1000);
       return;
     }
-
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -33,15 +32,15 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
       })
       .catch(error => {
         setLoading(false);
-        // if (error.code === 'auth/user-not-found') {
-        //   setMessage('Usuário não encontrado. Verifique o email digitado.');
-        // } else if (error.code === 'auth/wrong-password') {
-        //   setMessage('Senha incorreta. Verifique a senha digitada.');
-        // } else if (error.code === 'auth/invalid-email') {
-        //   setMessage('Digite um e-mail válido.');
-        // } else {
-        //   setMessage('Erro ao fazer login. Tente novamente mais tarde.');
-        // }
+        if (error.code === 'auth/user-not-found') {
+          setMessage('Usuário não encontrado. Verifique o email digitado.');
+        } else if (error.code === 'auth/wrong-password') {
+          setMessage('Senha incorreta. Verifique a senha digitada.');
+        } else if (error.code === 'auth/invalid-email') {
+          setMessage('Digite um e-mail válido.');
+        } else {
+          setMessage('Erro ao fazer login. Tente novamente mais tarde.');
+        }
         console.log(error);
       });
   };
