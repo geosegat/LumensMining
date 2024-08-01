@@ -1,4 +1,12 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import SvgSetting from '../../svgs/settings.svg';
 import SvgHome from '../../svgs/home.svg';
@@ -7,15 +15,25 @@ import SvgTransacoes from '../../svgs/transacao.svg';
 import SvgPerfil from '../../svgs/profile.svg';
 import SvgClaim from '../../svgs/claim.svg';
 
+interface CollectionSvgImgProps {
+  iconName: string;
+  width: number;
+  height: number;
+  color?: string;
+  onPress?: () => void;
+  isDisabled?: boolean;
+  style?: StyleProp<ViewStyle>;
+}
+
 const CollectionSvgImg = ({
   iconName = 'home',
   width,
   height,
-  color = color,
+  color = '#fff',
   onPress = () => {},
-  style = styles.container,
   isDisabled = false,
-}) => {
+  style,
+}: CollectionSvgImgProps) => {
   let iconComponent;
 
   switch (iconName) {
@@ -49,10 +67,10 @@ const CollectionSvgImg = ({
         />
       );
       break;
-    case 'ethImg':
+    case 'dogeImg':
       iconComponent = (
         <Image
-          source={require('../../svgs/pngConvert/etheriumIcon.png')}
+          source={require('../../svgs/pngConvert/dogecoinIcon.png')}
           style={{height: height, width: width}}
         />
       );
@@ -83,7 +101,7 @@ const CollectionSvgImg = ({
       break;
   }
   return (
-    <TouchableOpacity disabled={isDisabled} onPress={onPress} style={[style]}>
+    <TouchableOpacity disabled={isDisabled} onPress={onPress} style={style}>
       {iconComponent}
     </TouchableOpacity>
   );
