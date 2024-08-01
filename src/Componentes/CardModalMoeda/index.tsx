@@ -8,12 +8,13 @@ export interface Coin {
   id: string;
   name: string;
   value: string;
+  sigla: string;
 }
 
 interface CardModalMoedaProps {
   isVisible: boolean;
   toggleModal: () => void;
-  setSelectedCoin: (coin: string) => void;
+  setSelectedCoin: (coin: Coin) => void;
   coins: Coin[];
 }
 
@@ -26,13 +27,13 @@ const CardModalMoeda: React.FC<CardModalMoedaProps> = ({
   return (
     <Modal
       isVisible={isVisible}
-      animationIn="slideInUp"
-      animationOut="slideOutDown"
+      animationIn="fadeIn"
+      animationOut="fadeOut"
       backdropColor="black"
       backdropOpacity={0.5}
       onBackdropPress={toggleModal}>
       <View style={styles.modalContent}>
-        <AppText size="huge" style={styles.modalTitle} color="black">
+        <AppText size="huge" style={styles.modalTitle} color="#fff">
           Selecione uma Moeda
         </AppText>
         {coins.map(coin => (
@@ -40,11 +41,13 @@ const CardModalMoeda: React.FC<CardModalMoedaProps> = ({
             key={coin.id}
             style={styles.coinItem}
             onPress={() => {
-              setSelectedCoin(coin.name);
+              setSelectedCoin(coin);
               toggleModal();
             }}>
-            <CollectionSvgImg iconName={coin.value} width={15} height={15} />
-            <AppText style={{marginLeft: 5}}>{coin.name}</AppText>
+            <CollectionSvgImg iconName={coin.value} width={25} height={25} />
+            <AppText size="large" color="#fff" style={{marginLeft: 5}}>
+              {coin.name}
+            </AppText>
           </TouchableOpacity>
         ))}
       </View>
@@ -56,7 +59,7 @@ export default CardModalMoeda;
 
 const styles = StyleSheet.create({
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: '#002c53',
     padding: 20,
     borderRadius: 10,
   },
