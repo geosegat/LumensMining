@@ -15,15 +15,17 @@ interface ButtomImgLabel {
   color?: string;
   iconName: string;
   style?: StyleProp<ViewStyle>;
+  onPress?: () => {} | void;
 }
 const ButtomImgLabel: React.FC<ButtomImgLabel> = ({
   label,
   iconName,
   style,
   color,
+  onPress,
 }) => {
   return (
-    <TouchableOpacity style={[styles.buttonMoedas, style]}>
+    <TouchableOpacity style={[styles.buttonMoedas, style]} onPress={onPress}>
       <CollectionSvgImg
         isDisabled={true}
         color={color ?? '#fff'}
