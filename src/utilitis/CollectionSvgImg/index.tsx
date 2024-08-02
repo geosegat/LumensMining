@@ -62,7 +62,7 @@ const CollectionSvgImg = ({
     case 'bitcoinImg':
       iconComponent = (
         <Image
-          source={require('../../svgs/pngConvert/bitcoinIcon.png')}
+          source={require('../../svgs/pngConvert/bitcoin.png')}
           style={{height: height, width: width}}
         />
       );
