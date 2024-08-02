@@ -7,6 +7,7 @@ import CardButton from '../../Componentes/CardButton';
 import CardLogo from '../../Componentes/CardLogo';
 import ButtonBack from '../../Componentes/ButtonBack';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -18,23 +19,38 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
     navigation.navigate('ScreenInitial');
   };
 
-  const handleRegistrationSuccess = () => {
+  const handleRegistrationSuccess = async () => {
     setLoading(true);
     if (email.trim() === '' || password.trim() === '') {
       console.log('Email e senha são obrigatórios');
+      setLoading(false);
       return;
     }
 
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('Usuário criado com sucesso');
-        setLoading(false);
-      })
-      .catch(error => {
-        setLoading(false);
-        console.error('Erro ao registrar usuário:', error);
+    try {
+      // Cria o usuário com email e senha
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      const {user} = userCredential;
+
+      // Salva informações adicionais no Firestore
+      await firestore().collection('users').doc(user.uid).set({
+        cpf: cpf,
+        name: nameUser,
+        email: email,
+        balance: 0, // Definindo saldo inicial como 0
+        createdAt: firestore.FieldValue.serverTimestamp(),
       });
+
+      console.log('Usuário criado com sucesso e dados salvos no Firestore');
+      navigation.navigate('ScreenAccount');
+    } catch (error) {
+      console.error('Erro ao registrar usuário:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

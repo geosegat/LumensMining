@@ -47,7 +47,7 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
 
   const onPressTeste = () => {
     setEmail('geosegat@gmail.com');
-    setPassword('020296');
+    setPassword('000000');
   };
   const sendPasswordResetEmail = () => auth().sendPasswordResetEmail(email);
 
