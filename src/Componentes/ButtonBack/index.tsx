@@ -8,7 +8,7 @@ interface ButtonBackProps {
 
 const ButtonBack = ({onPressReturn}: ButtonBackProps) => {
   return (
-    <TouchableOpacity style={{width: 30}} onPress={onPressReturn}>
+    <TouchableOpacity style={styles.container} onPress={onPressReturn}>
       <SvgBack height={30} width={30} color={'white'} />
     </TouchableOpacity>
   );
@@ -16,4 +16,6 @@ const ButtonBack = ({onPressReturn}: ButtonBackProps) => {
 
 export default ButtonBack;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {width: 30},
+});

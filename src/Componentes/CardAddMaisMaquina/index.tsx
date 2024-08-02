@@ -4,15 +4,7 @@ import SvgMais from '../../svgs/mais.svg';
 
 const CardAddMaisMaquina = () => {
   return (
-    <TouchableOpacity
-      style={{
-        alignItems: 'center',
-        backgroundColor: '#191918',
-        borderRadius: 10,
-        elevation: 5,
-        marginBottom: 12,
-        padding: 15,
-      }}>
+    <TouchableOpacity style={styles.container}>
       <SvgMais color={'gray'} width={105} height={105} />
     </TouchableOpacity>
   );
@@ -20,4 +12,13 @@ const CardAddMaisMaquina = () => {
 
 export default CardAddMaisMaquina;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#191918',
+    borderRadius: 10,
+    elevation: 5,
+    marginBottom: 12,
+    padding: 15,
+  },
+});
