@@ -4,7 +4,6 @@ import {NavigationProps} from '../../utilitis/types/navigation';
 import CardButton from '../../Componentes/CardButton';
 import CardLogo from '../../Componentes/CardLogo';
 import auth from '@react-native-firebase/auth';
-import firebase from 'firebase/compat/app';
 
 const ScreenHome: React.FC<NavigationProps> = ({navigation}) => {
   const [loading, setLoading] = useState<boolean>(true); // Estado de carregamento
