@@ -3,7 +3,7 @@ import React from 'react';
 
 const ScreenTransactions = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>ScreenTransactions</Text>
     </View>
   );
@@ -11,4 +11,6 @@ const ScreenTransactions = () => {
 
 export default ScreenTransactions;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: '#1a1d1b'},
+});
