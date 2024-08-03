@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenLogin from './src/Telas/ScreenLogin';
 import ScreenRegister from './src/Telas/ScreenRegister';
-import ScreenInitial from './src/Telas/ScreenHome';
+import ScreenHome from './src/Telas/ScreenHome';
 import ScreenAccount from './src/Telas/ScreenAccount';
 import ScreenWallet from './src/Telas/ScreenWallet';
 import ScreenTransactions from './src/Telas/ScreenTransactions';
@@ -93,10 +93,10 @@ const TabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ScreenInitial">
+      <Stack.Navigator initialRouteName="ScreenHome">
         <Stack.Screen
-          name="ScreenInitial"
-          component={ScreenInitial}
+          name="ScreenHome"
+          component={ScreenHome}
           options={{headerShown: false}}
         />
         <Stack.Screen

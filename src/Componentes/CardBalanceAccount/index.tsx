@@ -2,9 +2,22 @@ import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import AppText from '../AppText';
 
-const CardBalanceAccount = () => {
+interface CardBalanceAccountProps {
+  balance: number; // O saldo será passado como prop obrigatória
+}
+
+const CardBalanceAccount: React.FC<CardBalanceAccountProps> = ({balance}) => {
   const [selectedCurrency, setSelectedCurrency] = useState('BRL');
   const [showBalance, setShowBalance] = useState(true);
+
+  const convertBalance = () => {
+    if (selectedCurrency === 'BTC') {
+      // Supondo que o valor do Bitcoin em BRL seja constante
+      const BITCOIN_VALOR = 367248.56;
+      return (balance / BITCOIN_VALOR).toFixed(8); // Convertendo para BTC
+    }
+    return balance.toFixed(2); // Retornando saldo em BRL
+  };
 
   return (
     <View style={styles.container}>
@@ -42,8 +55,8 @@ const CardBalanceAccount = () => {
         variant="semiBold">
         {showBalance
           ? selectedCurrency === 'BRL'
-            ? 'R$ 41,520.23'
-            : '0.99 BTC'
+            ? `R$ ${convertBalance()}`
+            : `${convertBalance()} BTC`
           : '*****'}
       </AppText>
 
