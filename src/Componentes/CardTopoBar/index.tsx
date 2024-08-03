@@ -3,15 +3,20 @@ import React from 'react';
 import SvgSettings from '../../svgs/settings.svg';
 import SvgLogo from '../../svgs/bitcoin.svg';
 
-const CardTopoBar = () => {
+// Define o tipo de props para o componente
+interface CardTopoBarProps {
+  onPress?: () => void;
+}
+
+const CardTopoBar: React.FC<CardTopoBarProps> = ({onPress}) => {
   return (
     <View style={styles.containerCard}>
       {/* <Image
         source={require('../../svgs/pngConvert/miniLogo5.png')}
-        style={{width: 60, height: 60}}
+        style={{ width: 60, height: 60 }}
       /> */}
 
-      <TouchableOpacity style={styles.containerSettingsIcon}>
+      <TouchableOpacity onPress={onPress} style={styles.containerSettingsIcon}>
         <SvgSettings width={24} height={24} color="#fff" />
       </TouchableOpacity>
     </View>

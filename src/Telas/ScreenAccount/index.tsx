@@ -1,5 +1,11 @@
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import SvgSeta from '../../svgs/seta.svg';
 import CardProfile from '../../Componentes/CardProfile';
@@ -7,6 +13,10 @@ import CardBalanceAccount from '../../Componentes/CardBalanceAccount';
 import AppText from '../../Componentes/AppText';
 import CardMining from '../../Componentes/CardMining';
 import CardTopoBar from '../../Componentes/CardTopoBar';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import CardModalSetting from '../../Componentes/CardModalSetting';
+import {useFocusEffect} from '@react-navigation/native';
 
 // Valores das moedas em reais
 const BITCOIN_VALOR = 367248.56; // Valor em reais por Bitcoin
@@ -15,8 +25,58 @@ const DASH_VALOR = 146.63; // Valor em reais por Dash
 const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
   const [totalMineiradoBTC, setTotalMineiradoBTC] = useState(0);
   const [totalMineiradoDASH, setTotalMineiradoDASH] = useState(0);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [usuarioLogado, setUsuarioLogado] = useState<any>(null);
 
-  // Função para calcular o valor em reais
+  const user = auth().currentUser;
+
+  const fetchUserData = async () => {
+    if (user) {
+      try {
+        const userDoc = await firestore()
+          .collection('users')
+          .doc(user.uid)
+          .get();
+        if (userDoc.exists) {
+          setUsuarioLogado(userDoc.data());
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error);
+      }
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchUserData();
+      const timer = setTimeout(() => {
+        fetchUserData();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }, [user]),
+  );
+
+  const padronizarNome = (nome: string) => {
+    return nome
+      .split(' ')
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join(' ');
+  };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const onPressSair = async () => {
+    try {
+      await auth().signOut();
+      navigation.navigate('ScreenLogin');
+    } catch (error) {
+      console.log('Não foi possível sair:', error);
+    }
+  };
+
   const calcularValorEmReais = (
     quantidade: number,
     valorPorUnidade: number,
@@ -45,9 +105,13 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
         />
 
         <View style={{padding: 15}}>
-          <CardTopoBar />
-          <CardProfile label="Fulano Assado Da Silva" />
-          <CardBalanceAccount />
+          <CardTopoBar onPress={toggleModal} />
+          {usuarioLogado && (
+            <>
+              <CardProfile label={padronizarNome(usuarioLogado.name)} />
+              <CardBalanceAccount balance={usuarioLogado.balance} />
+            </>
+          )}
         </View>
 
         <ScrollView style={styles.containerScrollView}>
@@ -94,6 +158,11 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
           />
         </ScrollView>
       </View>
+      <CardModalSetting
+        onPress={onPressSair}
+        isVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
     </View>
   );
 };

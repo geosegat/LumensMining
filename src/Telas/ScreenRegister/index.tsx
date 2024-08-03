@@ -1,4 +1,4 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Alert, Button, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import AppText from '../../Componentes/AppText';
@@ -15,18 +15,31 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cpf, setCpf] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const onPressReturn = () => {
-    navigation.navigate('ScreenInitial');
+    navigation.navigate('ScreenHome');
   };
 
   const handleRegistrationSuccess = async () => {
     setLoading(true);
-    if (email.trim() === '' || password.trim() === '') {
-      console.log('Email e senha são obrigatórios');
+    setErrorMessage(''); // Limpa a mensagem de erro
+
+    if (
+      email.trim() === '' ||
+      password.trim() === '' ||
+      nameUser.trim() === '' ||
+      cpf.trim() === ''
+    ) {
+      setErrorMessage('Todos os campos são obrigatórios');
       setLoading(false);
       return;
     }
-
+    if (cpf.length !== 11) {
+      setErrorMessage('Digite um CPF válido');
+      setLoading(false);
+      return;
+    }
     try {
       // Cria o usuário com email e senha
       const userCredential = await auth().createUserWithEmailAndPassword(
@@ -40,14 +53,41 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
         cpf: cpf,
         name: nameUser,
         email: email,
-        balance: 0, // Definindo saldo inicial como 0
+        balance: 50, // Definindo saldo inicial como 0
         createdAt: firestore.FieldValue.serverTimestamp(),
       });
 
       console.log('Usuário criado com sucesso e dados salvos no Firestore');
-      navigation.navigate('ScreenAccount');
-    } catch (error) {
-      console.error('Erro ao registrar usuário:', error);
+
+      Alert.alert(
+        'Conta Criada',
+        'Conta criada com sucesso',
+        [
+          {
+            text: 'OK',
+            onPress: () => console.log('conta criada'),
+          },
+        ],
+        {cancelable: false},
+      );
+    } catch (error: any) {
+      switch (error.code) {
+        case 'auth/invalid-email':
+          setErrorMessage('Digite um e-mail válido.');
+          break;
+        case 'auth/email-already-in-use':
+          setErrorMessage('Email já está em uso.');
+          break;
+        case 'auth/weak-password':
+          setErrorMessage('A senha deve ter pelo menos 6 caracteres.');
+          break;
+        default:
+          setErrorMessage(
+            'Erro ao registrar usuário. Tente novamente mais tarde.',
+          );
+          console.error('Erro ao registrar usuário:', error);
+          break;
+      }
     } finally {
       setLoading(false);
     }
@@ -89,6 +129,12 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
           keyboardType="numeric"
         />
 
+        {errorMessage ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{errorMessage}</Text>
+          </View>
+        ) : null}
+
         <CardButton
           style={{marginTop: 20}}
           label="Cadastrar"
@@ -109,4 +155,12 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   container2: {justifyContent: 'center', flex: 1},
+  errorContainer: {
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+  },
 });
