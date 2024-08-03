@@ -1,4 +1,4 @@
-import {Button, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Alert, Button, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
@@ -9,6 +9,8 @@ import ButtonBack from '../../Componentes/ButtonBack';
 import auth from '@react-native-firebase/auth';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
+  const user = auth().currentUser;
+
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,6 +31,8 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
         navigation.navigate('ScreenAccount');
         setLoading(false);
         setMessage('');
+        setEmail('');
+        setPassword('');
       })
       .catch(error => {
         setLoading(false);
@@ -49,10 +53,30 @@ const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
     setEmail('geosegat@gmail.com');
     setPassword('000000');
   };
-  const sendPasswordResetEmail = () => auth().sendPasswordResetEmail(email);
+  const sendPasswordResetEmail = async () => {
+    if (email.trim() === '') {
+      setMessage('Por favor, preencha o campo de e-mail.');
+      return;
+    }
+
+    try {
+      await auth().sendPasswordResetEmail(email);
+      Alert.alert(
+        'E-mail enviado',
+        'Verifique sua caixa de entrada para redefinir sua senha.',
+      );
+      setMessage('');
+    } catch (error) {
+      console.error('Erro ao enviar e-mail de redefinição de senha:', error);
+      Alert.alert(
+        'Erro',
+        'Não foi possível enviar o e-mail de redefinição de senha.',
+      );
+    }
+  };
 
   const onPressReturn = () => {
-    navigation.navigate('ScreenInitial');
+    navigation.navigate('ScreenHome');
   };
   return (
     <View style={styles.container}>
