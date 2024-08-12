@@ -41,7 +41,6 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
       return;
     }
     try {
-      // Cria o usuário com email e senha
       const userCredential = await auth().createUserWithEmailAndPassword(
         email,
         password,
@@ -58,18 +57,6 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
       });
 
       console.log('Usuário criado com sucesso e dados salvos no Firestore');
-
-      Alert.alert(
-        'Conta Criada',
-        'Conta criada com sucesso',
-        [
-          {
-            text: 'OK',
-            onPress: () => console.log('conta criada'),
-          },
-        ],
-        {cancelable: false},
-      );
     } catch (error: any) {
       switch (error.code) {
         case 'auth/invalid-email':

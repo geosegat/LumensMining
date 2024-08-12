@@ -14,12 +14,14 @@ interface CardModalSettingProps {
   isVisible?: boolean;
   toggleModal?: () => void;
   onPress?: () => void;
+  onPressVerify?: () => void;
 }
 
 const CardModalSetting: React.FC<CardModalSettingProps> = ({
   isVisible,
   toggleModal,
   onPress,
+  onPressVerify,
 }) => {
   const user = auth().currentUser;
 
@@ -46,16 +48,6 @@ const CardModalSetting: React.FC<CardModalSettingProps> = ({
     }
   }, [isVisible]);
 
-  const onPressTeste = () => {
-    if (user) {
-      console.log('Usuário logado:', user);
-      // Acesse propriedades do usuário como:
-      // user.uid, user.email, user.displayName, etc.
-    } else {
-      console.log('Nenhum usuário logado.');
-    }
-  };
-
   const modalStyles = {
     transform: [
       {
@@ -77,22 +69,22 @@ const CardModalSetting: React.FC<CardModalSettingProps> = ({
         {/* <AppText size="huge" style={styles.modalTitle} color="#fff">
           Configurações
         </AppText> */}
-        <TouchableOpacity style={styles.button} onPress={onPressTeste}>
+        <TouchableOpacity style={styles.button} onPress={onPressVerify}>
           <AppText size="large" color="#fff">
             Verificar Usuário
           </AppText>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPressTeste}>
+        <TouchableOpacity style={styles.button}>
           <AppText size="large" color="#fff">
             Carteira
           </AppText>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPressTeste}>
+        <TouchableOpacity style={styles.button}>
           <AppText size="large" color="#fff">
             Trocar
           </AppText>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={onPressTeste}>
+        <TouchableOpacity style={styles.button}>
           <AppText size="large" color="#fff">
             Perfil
           </AppText>
