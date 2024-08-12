@@ -27,6 +27,9 @@ const CardProfile = ({label}: CardProfileProps) => {
 export default CardProfile;
 
 const styles = StyleSheet.create({
-  container: {flexDirection: 'row', alignItems: 'center'},
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   textStyle: {marginLeft: 12},
 });
