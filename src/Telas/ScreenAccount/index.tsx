@@ -39,6 +39,8 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
           .get();
         if (userDoc.exists) {
           setUsuarioLogado(userDoc.data());
+        } else {
+          console.log('Usuário não encontrado!');
         }
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
@@ -46,16 +48,9 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
     }
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      fetchUserData();
-      const timer = setTimeout(() => {
-        fetchUserData();
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }, [user]),
-  );
+  const onPressVerify = () => {
+    console.log(usuarioLogado);
+  };
 
   const padronizarNome = (nome: string) => {
     return nome
@@ -105,13 +100,11 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
         />
 
         <View style={{padding: 15}}>
-          <CardTopoBar onPress={toggleModal} />
-          {usuarioLogado && (
-            <>
-              <CardProfile label={padronizarNome(usuarioLogado.name)} />
-              <CardBalanceAccount balance={usuarioLogado.balance} />
-            </>
-          )}
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <CardProfile label="oi" />
+            <CardTopoBar onPress={toggleModal} />
+          </View>
+          <CardBalanceAccount balance={0} />
         </View>
 
         <ScrollView style={styles.containerScrollView}>
@@ -160,6 +153,7 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
       </View>
       <CardModalSetting
         onPress={onPressSair}
+        onPressVerify={onPressVerify}
         isVisible={isModalVisible}
         toggleModal={toggleModal}
       />
