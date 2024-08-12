@@ -17,7 +17,7 @@ const CardTopoBar: React.FC<CardTopoBarProps> = ({onPress}) => {
       /> */}
 
       <TouchableOpacity onPress={onPress} style={styles.containerSettingsIcon}>
-        <SvgSettings width={24} height={24} color="#fff" />
+        <SvgSettings width={20} height={20} color="#fff" />
       </TouchableOpacity>
     </View>
   );
