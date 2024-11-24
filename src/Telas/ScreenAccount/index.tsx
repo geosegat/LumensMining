@@ -31,6 +31,8 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
   const user = auth().currentUser;
 
   const fetchUserData = async () => {
+    setUsuarioLogado(user);
+
     if (user) {
       try {
         const userDoc = await firestore()
@@ -38,7 +40,7 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
           .doc(user.uid)
           .get();
         if (userDoc.exists) {
-          setUsuarioLogado(userDoc.data());
+          setUsuarioLogado(userDoc);
         } else {
           console.log('Usuário não encontrado!');
         }
