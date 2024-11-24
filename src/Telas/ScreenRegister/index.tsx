@@ -23,7 +23,7 @@ const ScreenRegister: React.FC<NavigationProps> = ({navigation}) => {
 
   const handleRegistrationSuccess = async () => {
     setLoading(true);
-    setErrorMessage(''); // Limpa a mensagem de erro
+    setErrorMessage('');
 
     if (
       email.trim() === '' ||

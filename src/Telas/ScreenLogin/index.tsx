@@ -1,4 +1,4 @@
-import {Alert, Button, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NavigationProps} from '../../utilitis/types/navigation';
 import CardInput from '../../Componentes/CardInputLogin';
@@ -9,8 +9,6 @@ import ButtonBack from '../../Componentes/ButtonBack';
 import auth from '@react-native-firebase/auth';
 
 const ScreenLogin: React.FC<NavigationProps> = ({navigation}) => {
-  const user = auth().currentUser;
-
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
