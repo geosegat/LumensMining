@@ -18,7 +18,6 @@ import auth from '@react-native-firebase/auth';
 import CardModalSetting from '../../Componentes/CardModalSetting';
 import {useFocusEffect} from '@react-navigation/native';
 
-// Valores das moedas em reais
 const BITCOIN_VALOR = 367248.56; // Valor em reais por Bitcoin
 const DASH_VALOR = 146.63; // Valor em reais por Dash
 
