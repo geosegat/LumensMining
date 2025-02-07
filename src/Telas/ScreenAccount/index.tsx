@@ -34,7 +34,10 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
 
     if (user) {
       try {
-        const userDoc = await firestore().collection('').doc(user.uid).get();
+        const userDoc = await firestore()
+          .collection('users')
+          .doc(user.uid)
+          .get();
         if (userDoc.exists) {
           setUsuarioLogado(userDoc);
         } else {
