@@ -41,7 +41,7 @@ const ScreenAccount: React.FC<NavigationProps> = ({navigation}) => {
         if (userDoc.exists) {
           setUsuarioLogado(userDoc);
         } else {
-          console.log('Usuário não encontrado!');
+          console.log('Usuário não !');
         }
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
